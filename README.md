@@ -8,18 +8,26 @@ This project powered by Node.js and Express.
 
 ## Get Started
 
-```
-
 Open command line and apply this steps:
 
 1. Step
- git clone https://github.com/yazkan/hotel-management.git
+
+```
+git clone https://github.com/yazkan/hotel-management.git
+```
 
 2. Step
- cd hotel-management
- npm install
- npm start
 
+```
+cd hotel-management
+```
+
+```
+npm install
+```
+
+```
+npm start
 ```
 
 ## HTTP Requests
