@@ -6,6 +6,8 @@ import reservation from "./routes/reservationRouter.js";
 import service from "./routes/serviceRouter.js";
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use(room);
