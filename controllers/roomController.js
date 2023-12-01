@@ -24,13 +24,19 @@ export const getAllRooms = (req, res) => {
 };
 
 export const deleteRoom = (req, res) => {
-  connection.query(
-    "Delete FROM users WHERE userID=" + req.params.id,
-    function (err, result, fields) {
-      if (err) throw err; // TODO: handle error
-      res.status(200).json(result);
-    }
-  );
+  if (!isNaN(req.params.id)) {
+    connection.query(
+      "Delete FROM users WHERE userID=" + req.params.id,
+      function (err, result, fields) {
+        if (err) throw err; // TODO: handle error
+        res.status(200).json(result);
+      }
+    );
+  } else {
+    res
+      .status(400)
+      .json({ message: "Hatalı giriş! Geçerli bir room id giriniz!" });
+  }
 };
 
 export const createRoom = (req, res) => {
