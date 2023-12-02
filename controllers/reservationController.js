@@ -56,7 +56,7 @@ export const deleteReservation = (req, res) => {
   }
 };
 
-export const updateRoom = (req, res) => {
+export const updateReservation = (req, res) => {
   connection.query(
     "UPDATE reservations SET customer_id='" +
       req.body.customer_id +
