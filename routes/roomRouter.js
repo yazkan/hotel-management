@@ -4,6 +4,7 @@ import {
   getAllRooms,
   deleteRoom,
   createRoom,
+  updateRoom,
 } from "../controllers/roomController.js";
 
 const app = Router();
@@ -26,6 +27,11 @@ app.delete("/room/:id", (req, res) => {
 app.post("/room", (req, res) => {
   console.log("Log: Post request /room");
   createRoom(req, res);
+});
+
+app.post("/room/:id", (req, res) => {
+  console.log("Log: Post request /room/:id=" + req.params.id);
+  updateRoom(req, res);
 });
 
 export default app;

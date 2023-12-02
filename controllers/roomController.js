@@ -56,3 +56,22 @@ export const createRoom = (req, res) => {
     }
   );
 };
+
+export const updateRoom = (req, res) => {
+  connection.query(
+    "UPDATE users SET username='" +
+      req.body.username +
+      "', password='" +
+      req.body.password +
+      "', name='" +
+      req.body.name +
+      "', surname='" +
+      req.body.surname +
+      "' WHERE userID=" +
+      req.params.id,
+    function (err, result, fields) {
+      if (err) throw err; // TODO: handle error
+      res.status(200).json({ message: "User updated." });
+    }
+  );
+};
