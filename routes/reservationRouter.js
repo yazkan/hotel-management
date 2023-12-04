@@ -29,7 +29,7 @@ app.post("/reservation", (req, res) => {
   createReservation(req, res);
 });
 
-app.post("/reservation/:id", (req, res) => {
+app.put("/reservation/:id", (req, res) => {
   console.log("Log: Post request /reservation/:id=" + req.params.id);
   updateReservation(req, res);
 });

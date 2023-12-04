@@ -29,7 +29,7 @@ app.post("/room", (req, res) => {
   createRoom(req, res);
 });
 
-app.post("/room/:id", (req, res) => {
+app.put("/room/:id", (req, res) => {
   console.log("Log: Post request /room/:id=" + req.params.id);
   updateRoom(req, res);
 });
