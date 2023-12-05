@@ -1,6 +1,6 @@
 import connection from "../dbConnect.js";
 
-export const getAllReservation = (req, res) => {
+export const getAllReservations = (req, res) => {
   connection.query(
     "SELECT * FROM reservations",
     function (err, result, fields) {
@@ -25,9 +25,10 @@ export const createReservation = (req, res) => {
 };
 
 export const getReservation = (req, res) => {
-  if (!isNaN(req.params.id)) {
+  if (!isNaN(req.params.reservation_id)) {
     connection.query(
-      "SELECT * FROM reservations WHERE reservation_id=" + req.params.id,
+      "SELECT * FROM reservations WHERE reservation_id=" +
+        req.params.reservation_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -41,9 +42,10 @@ export const getReservation = (req, res) => {
 };
 
 export const deleteReservation = (req, res) => {
-  if (!isNaN(req.params.id)) {
+  if (!isNaN(req.params.reservation_id)) {
     connection.query(
-      "Delete FROM reservations WHERE reservation_id=" + req.params.id,
+      "Delete FROM reservations WHERE reservation_id=" +
+        req.params.reservation_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -57,16 +59,22 @@ export const deleteReservation = (req, res) => {
 };
 
 export const updateReservation = (req, res) => {
-  connection.query(
-    "UPDATE reservations SET customer_id='" +
-      req.body.customer_id +
-      "', room_no='" +
-      req.body.room_no +
-      "' WHERE reservation_id=" +
-      req.params.id,
-    function (err, result, fields) {
-      if (err) throw err; // TODO: handle error
-      res.status(200).json({ message: "Reservation updated." });
-    }
-  );
+  if (!isNaN(req.params.reservation_id)) {
+    connection.query(
+      "UPDATE reservations SET customer_id='" +
+        req.body.customer_id +
+        "', room_no='" +
+        req.body.room_no +
+        "' WHERE reservation_id=" +
+        req.params.reservation_id,
+      function (err, result, fields) {
+        if (err) throw err; // TODO: handle error
+        res.status(200).json({ message: "Reservation updated." });
+      }
+    );
+  } else {
+    res
+      .status(400)
+      .json({ message: "Hatalı giriş! Geçerli bir reservation id giriniz!" });
+  }
 };
