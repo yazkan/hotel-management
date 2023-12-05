@@ -5,7 +5,7 @@ const con = createConnection({
   port: 3306,
   user: "root",
   password: "root",
-  database: "freelancerdb",
+  database: "hotel_system",
 });
 
 //throwladığın errorlara mesaj eklemeyi unutma!!
