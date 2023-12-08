@@ -12,10 +12,14 @@ export const getAllReservations = (req, res) => {
 
 export const createReservation = (req, res) => {
   connection.query(
-    "INSERT INTO reservations (customer_id,room_no) VALUES ('" +
+    "INSERT INTO reservations (customer_id,room_no,reservation_start_date,reservation_end_date) VALUES ('" +
       req.body.customer_id +
       "','" +
       req.body.room_no +
+      "','" +
+      req.body.reservation_start_date +
+      "','" +
+      req.body.reservation_end_date +
       "')",
     function (err, result, fields) {
       if (err) throw err; // TODO: handle error
@@ -65,6 +69,10 @@ export const updateReservation = (req, res) => {
         req.body.customer_id +
         "', room_no='" +
         req.body.room_no +
+        "', reservation_start_date='" +
+        req.body.reservation_start_date +
+        "', reservation_end_date='" +
+        req.body.reservation_end_date +
         "' WHERE reservation_id=" +
         req.params.reservation_id,
       function (err, result, fields) {

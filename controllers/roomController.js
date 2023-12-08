@@ -52,7 +52,7 @@ export const createRoom = (req, res) => {
       "')",
     function (err, result, fields) {
       if (err) throw err; // TODO: handle error
-      res.status(200).json({ message: "User created." });
+      res.status(200).json({ message: "Room created." });
     }
   );
 };
@@ -72,7 +72,7 @@ export const updateRoom = (req, res) => {
         req.params.room_no,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
-        res.status(200).json({ message: "User updated." });
+        res.status(200).json({ message: "Room updated." });
       }
     );
   } else {
