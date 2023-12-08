@@ -30,19 +30,25 @@ npm start
 
 http://localhost:3000
 
-| Route                  | HTTP Request | Request Body                                                                                                                                                                          | Description                     |
-| ---------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| /roomAll               | `GET`        | Empty                                                                                                                                                                                 | Gets all rooms.                 |
-| /room/:room_id         | `GET`        | Empty                                                                                                                                                                                 | Gets the specified room.        |
-| /room                  | `POST`       | {"room_condition":STRING,"room_capacity":INT,"room_type":STRING,"room_price":INT}                                                                                                     | Creates a new room.             |
-| /room/:room_id         | `PUT`        | {"room_condition":STRING,"room_capacity":INT,"room_type":STRING,"room_price":INT}                                                                                                     | Updates the specified room.     |
-| /room/:room_id         | `DELETE`     | Empty                                                                                                                                                                                 | Removes the specified room.     |
-| /customerAll           | `GET`        | Empty                                                                                                                                                                                 | Gets all customers.             |
-| /customer/:customer_id | `GET`        | Empty                                                                                                                                                                                 | Gets the specified customer.    |
-| /customer              | `POST`       | {"employee_name":STRING,"employee_surname":STRING,"employee_username":STRING,"employee_password":STRING,"employee_eposta":STRING,"employee_hourly_pay":INT,"employee_hire_date":DATE} | Creates a new customer.         |
-| /customer/:customer_id | `PUT`        | {"employee_name":STRING,"employee_surname":STRING,"employee_username":STRING,"employee_password":STRING,"employee_eposta":STRING,"employee_hourly_pay":INT,"employee_hire_date":DATE} | Updates the specified customer. |
-| /customer/:customer_id | `DELETE`     | Empty                                                                                                                                                                                 | Removes the specified customer. |
+| Route                  | HTTP Request | Request Body                                                                      | Description                     |
+| ---------------------- | ------------ | --------------------------------------------------------------------------------- | ------------------------------- |
+| /roomAll               | `GET`        | Empty                                                                             | Gets all rooms.                 |
+| /room/:room_id         | `GET`        | Empty                                                                             | Gets the specified room.        |
+| /room                  | `POST`       | {"room_condition":STRING,"room_capacity":INT,"room_type":STRING,"room_price":INT} | Creates a new room.             |
+| /room/:room_id         | `PUT`        | {"room_condition":STRING,"room_capacity":INT,"room_type":STRING,"room_price":INT} | Updates the specified room.     |
+| /room/:room_id         | `DELETE`     | Empty                                                                             | Removes the specified room.     |
+| /customerAll           | `GET`        | Empty                                                                             | Gets all customers.             |
+| /customer/:customer_id | `GET`        | Empty                                                                             | Gets the specified customer.    |
+| /customer              | `POST`       |                                                                                   | Creates a new customer.         |
+| /customer/:customer_id | `PUT`        |                                                                                   | Updates the specified customer. |
+| /customer/:customer_id | `DELETE`     | Empty                                                                             | Removes the specified customer. |
 
 ### Languages and Tools:
 
-<p align="left"> <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> </p>
+<p align="left">
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/></a> 
+<a href="https://nodejs.org" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/></a>
+<a href="https://expressjs.com" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/></a>
+<a href="https://reactjs.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/></a>
+<a href="https://www.mysql.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/></a>
+</p>
