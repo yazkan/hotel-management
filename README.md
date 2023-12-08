@@ -30,18 +30,19 @@ npm start
 
 http://localhost:3000
 
-| Route                  | HTTP Request | Request Body                          | Description                     |
-| ---------------------- | ------------ | ------------------------------------- | ------------------------------- |
-| /roomAll               | `GET`        | Empty                                 | Gets all rooms.                 |
-| /room/:room_id         | `GET`        | Empty                                 | Gets the specified room.        |
-| /room                  | `POST`       | {"room_type":STRING,"room_price":INT} | Creates a new room.             |
-| /room/:room_id         | `PUT`        | {"room_type":STRING,"room_price":INT} | Updates the specified room.     |
-| /room/:room_id         | `DELETE`     | Empty                                 | Removes the specified room.     |
-| /customerAll           | `GET`        | Empty                                 | Gets all customers.             |
-| /customer/:customer_id | `GET`        | Empty                                 | Gets the specified customer.    |
-| /customer              | `POST`       | Empty                                 | Creates a new customer.         |
-| /customer/:customer_id | `PUT`        | Empty                                 | Updates the specified customer. |
-| /customer/:customer_id | `DELETE`     | Empty                                 | Removes the specified customer. |
+| Route                  | HTTP Request | Request Body                                                | Description                     |
+| ---------------------- | ------------ | ----------------------------------------------------------- | ------------------------------- |
+| /roomAll               | `GET`        | Empty                                                       | Gets all rooms.                 |
+| /room/:room_id         | `GET`        | Empty                                                       | Gets the specified room.        |
+| /room                  | `POST`       | {"room_condition","room_capacity","room_type","room_price"} | Creates a new room.             |
+| /room/:room_id         | `PUT`        | {"room_condition","room_capacity","room_type","room_price"} | Updates the specified room.     |
+| /room/:room_id         | `DELETE`     | Empty                                                       | Removes the specified room.     |
+| ---------------------- | ------------ | ----------------------------------------------------------- | ------------------------------- |
+| /customerAll           | `GET`        | Empty                                                       | Gets all customers.             |
+| /customer/:customer_id | `GET`        | Empty                                                       | Gets the specified customer.    |
+| /customer              | `POST`       | Empty                                                       | Creates a new customer.         |
+| /customer/:customer_id | `PUT`        | Empty                                                       | Updates the specified customer. |
+| /customer/:customer_id | `DELETE`     | Empty                                                       | Removes the specified customer. |
 
 ### Languages and Tools:
 
