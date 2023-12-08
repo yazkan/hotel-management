@@ -1,10 +1,6 @@
 # Hotel Management System
 
-![Version][npm-image] ![Version][npm-licence-image]
-
-It is the hotel management system server. It retrieves data from the database and allows access to the data from specified endpoints with Express.js
-
-This project powered by Node.js and Express.
+It is the hotel management system server. It retrieves data from the database and allows access to the data from specified endpoints.
 
 ## Get Started
 
@@ -34,22 +30,19 @@ npm start
 
 http://localhost:3000
 
-| Route          | HTTP Request | Request Body                                                                                                        | Description              |
-| -------------- | ------------ | ------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| /payment       | `GET`        | Empty                                                                                                               | Empty                    |
-| /reservation   | `GET`        | Empty                                                                                                               | Empty                    |
-| /service       | `GET`        | Empty                                                                                                               | Empty                    |
-| /room/allRooms | `GET`        | Empty                                                                                                               | Gets all rooms.          |
-| /room/:id      | `GET`        | Empty                                                                                                               | Gets the specified room. |
-| /user/allUsers | `GET`        | Empty                                                                                                               | Gets all users.          |
-| /user/:id      | `GET`        | Empty                                                                                                               | Gets the specified user. |
-| /user/:id      | `POST`       | {'username':'username', 'name':'Name', 'surname':'Surname', 'email':'username@example.com', 'password':'Password' } | Creates a new user.      |
+| Route                  | HTTP Request | Request Body                                                                                                                                                                          | Description                     |
+| ---------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| /roomAll               | `GET`        | Empty                                                                                                                                                                                 | Gets all rooms.                 |
+| /room/:room_id         | `GET`        | Empty                                                                                                                                                                                 | Gets the specified room.        |
+| /room                  | `POST`       | {"room_condition":STRING,"room_capacity":INT,"room_type":STRING,"room_price":INT}                                                                                                     | Creates a new room.             |
+| /room/:room_id         | `PUT`        | {"room_condition":STRING,"room_capacity":INT,"room_type":STRING,"room_price":INT}                                                                                                     | Updates the specified room.     |
+| /room/:room_id         | `DELETE`     | Empty                                                                                                                                                                                 | Removes the specified room.     |
+| /customerAll           | `GET`        | Empty                                                                                                                                                                                 | Gets all customers.             |
+| /customer/:customer_id | `GET`        | Empty                                                                                                                                                                                 | Gets the specified customer.    |
+| /customer              | `POST`       | {"employee_name":STRING,"employee_surname":STRING,"employee_username":STRING,"employee_password":STRING,"employee_eposta":STRING,"employee_hourly_pay":INT,"employee_hire_date":DATE} | Creates a new customer.         |
+| /customer/:customer_id | `PUT`        | {"employee_name":STRING,"employee_surname":STRING,"employee_username":STRING,"employee_password":STRING,"employee_eposta":STRING,"employee_hourly_pay":INT,"employee_hire_date":DATE} | Updates the specified customer. |
+| /customer/:customer_id | `DELETE`     | Empty                                                                                                                                                                                 | Removes the specified customer. |
 
-## Contributors
+### Languages and Tools:
 
-@nazmiyazkan
-@ozgur
-@mustafakacar
-
-[npm-image]: https://camo.githubusercontent.com/1989ee0985bb24c008f46f46930d552e5b4f95c938cecd70fca2cd18e8acbecb/68747470733a2f2f62616467656e2e6e65742f6e706d2f762f65787072657373
-[npm-licence-image]: https://camo.githubusercontent.com/cc63a56f27c0b4c4359b786a56bfa6986f987f4007a9b975635e060d24bdb96f/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f6d7973716c322e7376673f6d61784167653d32353932303030
+<p align="left"> <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> </p>
