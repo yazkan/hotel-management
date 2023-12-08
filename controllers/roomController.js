@@ -3,7 +3,7 @@ import connection from "../dbConnect.js";
 export const getRoom = (req, res) => {
   if (!isNaN(req.params.id)) {
     connection.query(
-      "SELECT * FROM users WHERE userID=" + req.params.id,
+      "SELECT * FROM rooms WHERE room_no=" + req.params.id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -17,7 +17,7 @@ export const getRoom = (req, res) => {
 };
 
 export const getAllRooms = (req, res) => {
-  connection.query("SELECT * FROM users", function (err, result, fields) {
+  connection.query("SELECT * FROM rooms", function (err, result, fields) {
     if (err) throw err; // TODO: handle error
     res.status(200).json(result);
   });
@@ -26,7 +26,7 @@ export const getAllRooms = (req, res) => {
 export const deleteRoom = (req, res) => {
   if (!isNaN(req.params.id)) {
     connection.query(
-      "Delete FROM users WHERE userID=" + req.params.id,
+      "Delete FROM rooms WHERE room_no=" + req.params.id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -41,14 +41,14 @@ export const deleteRoom = (req, res) => {
 
 export const createRoom = (req, res) => {
   connection.query(
-    "INSERT INTO users (username,password,name,surname) VALUES ('" +
-      req.body.username +
+    "INSERT INTO rooms (room_condition,room_capacity,room_type,room_price) VALUES ('" +
+      req.body.room_condition +
       "','" +
-      req.body.password +
+      req.body.room_capacity +
       "','" +
-      req.body.name +
+      req.body.room_type +
       "','" +
-      req.body.surname +
+      req.body.room_price +
       "')",
     function (err, result, fields) {
       if (err) throw err; // TODO: handle error
@@ -60,16 +60,16 @@ export const createRoom = (req, res) => {
 export const updateRoom = (req, res) => {
   if (!isNaN(req.params.id)) {
     connection.query(
-      "UPDATE users SET username='" +
-        req.body.username +
-        "', password='" +
-        req.body.password +
-        "', name='" +
-        req.body.name +
-        "', surname='" +
-        req.body.surname +
-        "' WHERE userID=" +
-        req.params.id,
+      "UPDATE rooms SET room_condition='" +
+        req.body.room_condition +
+        "', room_capacity='" +
+        req.body.room_capacity +
+        "', room_type='" +
+        req.body.room_type +
+        "', room_price='" +
+        req.body.room_price +
+        "' WHERE room_no=" +
+        req.params.room_no,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json({ message: "User updated." });

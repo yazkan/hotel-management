@@ -14,13 +14,13 @@ app.get("/roomAll", (req, res) => {
   getAllRooms(req, res);
 });
 
-app.get("/room/:id", (req, res) => {
-  console.log("Log: Get request /room/:id=" + req.params.id);
+app.get("/room/:room_no", (req, res) => {
+  console.log("Log: Get request /room/:room_no=" + req.params.room_no);
   getRoom(req, res);
 });
 
-app.delete("/room/:id", (req, res) => {
-  console.log("Log: Delete request /room/:id=" + req.params.id);
+app.delete("/room/:room_no", (req, res) => {
+  console.log("Log: Delete request /room/:room_no=" + req.params.room_no);
   deleteRoom(req, res);
 });
 
@@ -29,8 +29,8 @@ app.post("/room", (req, res) => {
   createRoom(req, res);
 });
 
-app.put("/room/:id", (req, res) => {
-  console.log("Log: Post request /room/:id=" + req.params.id);
+app.put("/room/:room_no", (req, res) => {
+  console.log("Log: Post request /room/:room_no=" + req.params.room_no);
   updateRoom(req, res);
 });
 
