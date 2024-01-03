@@ -83,5 +83,26 @@ export const updateRoom = (req, res) => {
 };
 
 export const filteredRooms = (req, res) => {
-  console.log(req.params.end_date);
+  const conflictingReservations=null;
+  connection.query(
+    "SELECT * FROM reservations",
+    function (err, result, fields) {
+      if (err) throw err; // TODO: handle error
+      conflictingReservations = result.filter(reservation =>
+        (reservation.reservation_start_date <= req.query.end_Date && reservation.reservation_end_date >= req.query.start_Date)
+      );
+    }
+  );
+
+  connection.query(
+    "SELECT * FROM rooms",
+    function (err, result, fields) {
+      if (err) throw err; // TODO: handle error
+      const availableRooms = result.filter(room => {
+        const conflictingReservation = conflictingReservations.find(reservation => reservation.room_no === room.room_no);
+        return !conflictingReservation && room.capacity >= req.query.capacity;
+      });
+      res.status(200).json(availableRooms);
+    }
+  );
 };

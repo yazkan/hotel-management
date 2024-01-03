@@ -35,8 +35,8 @@ app.put("/room/:room_no", (req, res) => {
   updateRoom(req, res);
 });
 
-app.get("/rooms/:start_date&:end_date&:capacity", (req, res) => {
-  console.log("Log: Post request /room/:start_date=" + req.params.start_date + "&end_date=" + req.params.end_date + "&capacity=" + req.params.capacity);
+app.get("/rooms", (req, res) => {
+  console.log("Log: Get request Filter /rooms");
   filteredRooms(req, res);
 });
 
