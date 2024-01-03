@@ -5,6 +5,7 @@ import {
   deleteRoom,
   createRoom,
   updateRoom,
+  filteredRooms
 } from "../controllers/roomController.js";
 
 const app = Router();
@@ -32,6 +33,11 @@ app.post("/room", (req, res) => {
 app.put("/room/:room_no", (req, res) => {
   console.log("Log: Post request /room/:room_no=" + req.params.room_no);
   updateRoom(req, res);
+});
+
+app.get("/rooms/:start_date&:end_date&:capacity", (req, res) => {
+  console.log("Log: Post request /room/:start_date=" + req.params.start_date + "&end_date=" + req.params.end_date + "&capacity=" + req.params.capacity);
+  filteredRooms(req, res);
 });
 
 export default app;

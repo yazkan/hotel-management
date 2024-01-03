@@ -1,9 +1,9 @@
 import connection from "../dbConnect.js";
 
 export const getRoom = (req, res) => {
-  if (!isNaN(req.params.id)) {
+  if (!isNaN(req.params.room_no)) {
     connection.query(
-      "SELECT * FROM rooms WHERE room_no=" + req.params.id,
+      "SELECT * FROM rooms WHERE room_no=" + req.params.room_no,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -24,9 +24,9 @@ export const getAllRooms = (req, res) => {
 };
 
 export const deleteRoom = (req, res) => {
-  if (!isNaN(req.params.id)) {
+  if (!isNaN(req.params.room_no)) {
     connection.query(
-      "Delete FROM rooms WHERE room_no=" + req.params.id,
+      "Delete FROM rooms WHERE room_no=" + req.params.room_no,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -58,7 +58,7 @@ export const createRoom = (req, res) => {
 };
 
 export const updateRoom = (req, res) => {
-  if (!isNaN(req.params.id)) {
+  if (!isNaN(req.params.room_no)) {
     connection.query(
       "UPDATE rooms SET room_condition='" +
         req.body.room_condition +
@@ -80,4 +80,8 @@ export const updateRoom = (req, res) => {
       .status(400)
       .json({ message: "Hatalı giriş! Geçerli bir room id giriniz!" });
   }
+};
+
+export const filteredRooms = (req, res) => {
+  console.log(req.params.end_date);
 };
