@@ -8,8 +8,17 @@ export const getAllEmployees = (req, res) => {
 };
 
 export const createEmployee = (req, res) => {
+  //username kayıtlıysa response 400 döner
   connection.query(
-    "INSERT INTO employees (employee_name,employee_surname,employee_username,employee_password,employee_eposta,employee_hourly_pay,employee_hire_date) VALUES ('" +
+    "SELECT * FROM employees WHERE employee_username=" + req.body.employee_username,
+    function (err, result, fields) {
+      if (err) throw err; // TODO: handle error
+      if(result.length != 0)
+        res.status(400).json(result);
+    }
+  );
+  connection.query(
+    "INSERT INTO employees (employee_name,employee_surname,employee_username,employee_password,employee_email,employee_type) VALUES ('" +
       req.body.employee_name +
       "','" +
       req.body.employee_surname +
