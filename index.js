@@ -7,6 +7,8 @@ import service from "./routes/serviceRouter.js";
 import customer from "./routes/customerRouter.js";
 import employee from "./routes/employeeRouter.js";
 import login from "./routes/loginRouter.js";
+import bills from "./routes/billsRouter.js";
+import purchasedService from "./routes/purchasedServiceRouter.js";
 
 const app = express();
 app.use(express.json());
@@ -20,6 +22,8 @@ app.use(service);
 app.use(customer);
 app.use(employee);
 app.use(login);
+app.use(bills);
+app.use(purchasedService);
 
 app.get("/", (req, res) => {
   res.status(200).send("Home");
