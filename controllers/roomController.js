@@ -83,26 +83,34 @@ export const updateRoom = (req, res) => {
 };
 
 export const filteredRooms = (req, res) => {
-  const conflictingReservations=null;
-  connection.query(
-    "SELECT * FROM reservations",
-    function (err, result, fields) {
-      if (err) throw err; // TODO: handle error
-      conflictingReservations = result.filter(reservation =>
-        (reservation.reservation_start_date <= req.query.end_Date && reservation.reservation_end_date >= req.query.start_Date)
-      );
-    }
-  );
+  // Sorguyu oluştur
+  const query = `
+  SELECT
+    *
+  FROM
+    rooms
+  WHERE
+    room_no NOT IN (
+      SELECT
+        room_no
+      FROM
+        reservations
+      WHERE
+        reservation_start_date <= ? AND reservation_end_date >= ?
+    )
+    AND room_capacity >= ?
+`;
 
+  // Sorguyu çalıştır
   connection.query(
-    "SELECT * FROM rooms",
-    function (err, result, fields) {
-      if (err) throw err; // TODO: handle error
-      const availableRooms = result.filter(room => {
-        const conflictingReservation = conflictingReservations.find(reservation => reservation.room_no === room.room_no);
-        return !conflictingReservation && room.capacity >= req.query.capacity;
-      });
-      res.status(200).json(availableRooms);
+    query,
+    [req.query.end, req.query.start, req.query.numberOfPerson],
+    (err, results) => {
+      if (err) {
+        console.error(err);
+      } else {
+        res.status(200).json(results);
+      }
     }
   );
 };
