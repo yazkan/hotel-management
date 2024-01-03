@@ -6,6 +6,7 @@ import reservation from "./routes/reservationRouter.js";
 import service from "./routes/serviceRouter.js";
 import customer from "./routes/customerRouter.js";
 import employee from "./routes/employeeRouter.js";
+import login from "./routes/loginRouter.js";
 
 const app = express();
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(reservation);
 app.use(service);
 app.use(customer);
 app.use(employee);
+app.use(login);
 
 app.get("/", (req, res) => {
   res.status(200).send("Home");
