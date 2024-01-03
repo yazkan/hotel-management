@@ -2,7 +2,7 @@ import connection from "../dbConnect.js";
 
 export const loginCustomer = (req, res) => {
   connection.query(
-    "SELECT * FROM users WHERE username=" +
+    "SELECT * FROM customer WHERE username=" +
       connection.escape(req.body.username) +
       " AND password=" +
       connection.escape(req.body.password),
@@ -15,7 +15,7 @@ export const loginCustomer = (req, res) => {
 
 export const loginEmployer = (req, res) => {
   connection.query(
-    "SELECT * FROM users WHERE username=" +
+    "SELECT * FROM employees WHERE username=" +
       connection.escape(req.body.username) +
       " AND password=" +
       connection.escape(req.body.password),
