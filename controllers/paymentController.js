@@ -1,7 +1,7 @@
 import connection from "../dbConnect.js";
 
 export const getAllBills = (req, res) => {
-  connection.query("SELECT * FROM bills", function (err, result, fields) {
+  connection.query("SELECT * FROM payments", function (err, result, fields) {
     if (err) throw err; // TODO: handle error
     res.status(200).json(result);
   });
@@ -9,14 +9,18 @@ export const getAllBills = (req, res) => {
 
 export const createBill = (req, res) => {
   connection.query(
-    "INSERT INTO bills (customer_id,room_no,bill_amount,bill_date) VALUES ('" +
-      req.body.customer_id +
+    "INSERT INTO payments (payment_amount,payer_name,cc_expierdate,cc_number, cc_cvv,reservation_id) VALUES ('" +
+      req.body.payment_amount +
       "','" +
-      req.body.room_no +
+      req.body.payer_name +
       "','" +
-      req.body.bill_amount +
+      req.body.cc_expierdate +
       "','" +
-      req.body.bill_date +
+      req.body.cc_number +
+      "','" +
+      req.body.cc_cvv +
+      "','" +
+      req.body.reservation_id +
       "')",
     function (err, result, fields) {
       if (err) {
@@ -32,7 +36,7 @@ export const createBill = (req, res) => {
 export const getBill = (req, res) => {
   if (!isNaN(req.params.bill_id)) {
     connection.query(
-      "SELECT * FROM bills WHERE bill_id=" + req.params.bill_id,
+      "SELECT * FROM payments WHERE payment_id=" + req.params.bill_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -48,7 +52,7 @@ export const getBill = (req, res) => {
 export const deleteBill = (req, res) => {
   if (!isNaN(req.params.bill_id)) {
     connection.query(
-      "Delete FROM bills WHERE bill_id=" + req.params.bill_id,
+      "Delete FROM payments WHERE payment_id=" + req.params.bill_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -64,15 +68,19 @@ export const deleteBill = (req, res) => {
 export const updateBill = (req, res) => {
   if (!isNaN(req.params.bill_id)) {
     connection.query(
-      "UPDATE bills SET customer_id='" +
-        req.body.customer_id +
-        "', room_no='" +
-        req.body.room_no +
-        "', bill_amount='" +
-        req.body.bill_amount +
-        "', bill_date='" +
-        req.body.bill_date +
-        "' WHERE bill_id=" +
+      "UPDATE payments SET payment_amount='" +
+        req.body.payment_amount +
+        "', payer_name='" +
+        req.body.payer_name +
+        "', cc_expierdate='" +
+        req.body.cc_expierdate +
+        "', cc_number='" +
+        req.body.cc_number +
+        "', cc_cvv='" +
+        req.body.cc_cvv +
+        "', reservation_id='" +
+        req.body.reservation_id +
+        "' WHERE payment_id=" +
         req.params.bill_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error

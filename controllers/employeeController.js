@@ -18,11 +18,9 @@ export const createEmployee = (req, res) => {
       "','" +
       req.body.employee_password +
       "','" +
-      req.body.employee_eposta +
+      req.body.employee_email +
       "','" +
-      req.body.employee_hourly_pay +
-      "','" +
-      req.body.employee_hire_date +
+      req.body.employee_type +
       "')",
     function (err, result, fields) {
       if (err) {
@@ -79,11 +77,9 @@ export const updateEmployee = (req, res) => {
         "', employee_password='" +
         req.body.employee_password +
         "', employee_eposta='" +
-        req.body.employee_eposta +
-        "', employee_hourly_pay='" +
-        req.body.employee_hourly_pay +
-        "', employee_hire_date='" +
-        req.body.employee_hire_date +
+        req.body.employee_email +
+        "', employee_type='" +
+        req.body.employee_type +
         "' WHERE employee_id=" +
         req.params.employee_id,
       function (err, result, fields) {

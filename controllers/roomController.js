@@ -41,9 +41,7 @@ export const deleteRoom = (req, res) => {
 
 export const createRoom = (req, res) => {
   connection.query(
-    "INSERT INTO rooms (room_condition,room_capacity,room_type,room_price) VALUES ('" +
-      req.body.room_condition +
-      "','" +
+    "INSERT INTO rooms (room_capacity,room_type,room_price) VALUES ('" +
       req.body.room_capacity +
       "','" +
       req.body.room_type +
@@ -60,9 +58,7 @@ export const createRoom = (req, res) => {
 export const updateRoom = (req, res) => {
   if (!isNaN(req.params.room_no)) {
     connection.query(
-      "UPDATE rooms SET room_condition='" +
-        req.body.room_condition +
-        "', room_capacity='" +
+      "UPDATE rooms SET room_capacity='" +
         req.body.room_capacity +
         "', room_type='" +
         req.body.room_type +

@@ -9,10 +9,10 @@ export const getAllServices = (req, res) => {
 
 export const createService = (req, res) => {
   connection.query(
-    "INSERT INTO services (service_title,service_price) VALUES ('" +
-      req.body.service_title +
+    "INSERT INTO services (reservation_id,service_id) VALUES ('" +
+      req.body.reservation_id +
       "','" +
-      req.body.service_price +
+      req.body.service_id +
       "')",
     function (err, result, fields) {
       if (err) {
@@ -26,9 +26,9 @@ export const createService = (req, res) => {
 };
 
 export const getService = (req, res) => {
-  if (!isNaN(req.params.service_id)) {
+  if (!isNaN(req.params.purchased_service_id)) {
     connection.query(
-      "SELECT * FROM services WHERE service_id=" + req.params.service_id,
+      "SELECT * FROM services WHERE purchased_service_id=" + req.params.purchased_service_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -42,9 +42,9 @@ export const getService = (req, res) => {
 };
 
 export const deleteService = (req, res) => {
-  if (!isNaN(req.params.service_id)) {
+  if (!isNaN(req.params.purchased_service_id)) {
     connection.query(
-      "Delete FROM services WHERE service_id=" + req.params.service_id,
+      "Delete FROM services WHERE purchased_service_id=" + req.params.purchased_service_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -60,12 +60,12 @@ export const deleteService = (req, res) => {
 export const updateService = (req, res) => {
   if (!isNaN(req.params.service_id)) {
     connection.query(
-      "UPDATE services SET service_title='" +
-        req.body.service_title +
-        "', service_price='" +
-        req.body.service_price +
-        "' WHERE service_id=" +
-        req.params.service_id,
+      "UPDATE services SET reservation_id='" +
+        req.body.reservation_id +
+        "', service_id='" +
+        req.body.service_id +
+        "' WHERE purchased_service_id=" +
+        req.params.purchased_service_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json({ message: "Service updated." });
