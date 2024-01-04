@@ -46,6 +46,16 @@ export const createReservation = (req, res) => {
         });
       }
 
+      const insertBillQuery =
+      "INSERT INTO bills (reservation_id,bill_amount,bill_datetime) VALUES (?, ?, ?)";
+      const billValues = [reservationId, req.body.amount, Date.now()];
+      connection.query(insertBillQuery, billValues, (serviceErr) => {
+        if (serviceErr) {
+          console.error(serviceErr);
+          res.status(500).json({ message: "Internal Server Error" });
+        }
+      });
+
       res.status(200).json({ message: "Reservation and services created." });
     });
   } catch (error) {
@@ -77,15 +87,22 @@ export const getReservation = (req, res) => {
 export const deleteReservation = (req, res) => {
   if (!isNaN(req.params.reservation_id)) {
     try {
-      // Delete from reservations table
+
+      // Delete from bills table
        connection.query(
-        "DELETE FROM reservations WHERE reservation_id = ?",
+        "DELETE FROM bills WHERE reservation_id = ?",
         [req.params.reservation_id]
       );
 
       // Delete from purchased_services table
-       connection.query(
+      connection.query(
         "DELETE FROM purchased_services WHERE reservation_id = ?",
+        [req.params.reservation_id]
+      );
+
+      // Delete from reservations table
+      connection.query(
+        "DELETE FROM reservations WHERE reservation_id = ?",
         [req.params.reservation_id]
       );
 
