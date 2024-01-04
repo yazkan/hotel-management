@@ -10,23 +10,53 @@ export const getAllReservations = (req, res) => {
   );
 };
 
+
 export const createReservation = (req, res) => {
-  connection.query(
-    "INSERT INTO reservations (customer_id,room_no,reservation_start_date,reservation_end_date) VALUES ('" +
-      req.body.customer_id +
-      "','" +
-      req.body.room_no +
-      "','" +
-      req.body.reservation_start_date +
-      "','" +
-      req.body.reservation_end_date +
-      "')",
-    function (err, result, fields) {
-      if (err) throw err; // TODO: handle error
-      res.status(200).json({ message: "Reservation created." });
-    }
-  );
+  try {
+    const insertReservationQuery =
+      "INSERT INTO reservations (customer_id,room_no,reservation_start_date,reservation_end_date) VALUES (?, ?, ?, ?)";
+
+    const reservationValues = [
+      req.body.customer_id,
+      req.body.room_no,
+      req.body.reservation_start_date,
+      req.body.reservation_end_date
+    ];
+
+    connection.query(insertReservationQuery, reservationValues, (err, reservationResult) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ message: "Internal Server Error" });
+        return;
+      }
+
+      const reservationId = reservationResult.insertId;
+      console.log(reservationId);
+
+      for (const serviceId of req.body.purchased_services) {
+        const insertServiceQuery =
+          "INSERT INTO purchased_services (reservation_id,service_id) VALUES (?, ?)";
+
+        const serviceValues = [reservationId, serviceId];
+
+        connection.query(insertServiceQuery, serviceValues, (serviceErr) => {
+          if (serviceErr) {
+            console.error(serviceErr);
+            res.status(500).json({ message: "Internal Server Error" });
+          }
+        });
+      }
+
+      res.status(200).json({ message: "Reservation and services created." });
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 };
+
+
+
 
 export const getReservation = (req, res) => {
   if (!isNaN(req.params.reservation_id)) {

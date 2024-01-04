@@ -41,7 +41,9 @@ export const deleteRoom = (req, res) => {
 
 export const createRoom = (req, res) => {
   connection.query(
-    "INSERT INTO rooms (room_capacity,room_type,room_price) VALUES ('" +
+    "INSERT INTO rooms (room_name,room_capacity,room_type,room_price) VALUES ('" +
+      req.body.room_name +
+      "','" +
       req.body.room_capacity +
       "','" +
       req.body.room_type +
@@ -64,6 +66,8 @@ export const updateRoom = (req, res) => {
         req.body.room_type +
         "', room_price='" +
         req.body.room_price +
+        "', room_name='" +
+        req.body.room_name +
         "' WHERE room_no=" +
         req.params.room_no,
       function (err, result, fields) {
