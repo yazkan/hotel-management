@@ -31,7 +31,6 @@ export const createReservation = (req, res) => {
       }
 
       const reservationId = reservationResult.insertId;
-      console.log(reservationId);
 
       for (const serviceId of req.body.purchased_services) {
         const insertServiceQuery =
@@ -77,14 +76,26 @@ export const getReservation = (req, res) => {
 
 export const deleteReservation = (req, res) => {
   if (!isNaN(req.params.reservation_id)) {
-    connection.query(
-      "Delete FROM reservations WHERE reservation_id=" +
-        req.params.reservation_id,
-      function (err, result, fields) {
-        if (err) throw err; // TODO: handle error
-        res.status(200).json(result);
-      }
-    );
+    try {
+      // Delete from reservations table
+       connection.query(
+        "DELETE FROM reservations WHERE reservation_id = ?",
+        [req.params.reservation_id]
+      );
+
+      // Delete from purchased_services table
+       connection.query(
+        "DELETE FROM purchased_services WHERE reservation_id = ?",
+        [req.params.reservation_id]
+      );
+
+      res.status(200).json({ message: "Reservation and purchased services deleted." });
+    } catch (error) {
+      // Rollback the transaction in case of an error
+       connection.rollback();
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   } else {
     res
       .status(400)
