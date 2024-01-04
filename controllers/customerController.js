@@ -1,4 +1,5 @@
 import connection from "../dbConnect.js";
+import crypto from "crypto";
 
 export const getAllCustomers = (req, res) => {
   connection.query("SELECT * FROM customers", function (err, result, fields) {
@@ -10,7 +11,7 @@ export const getAllCustomers = (req, res) => {
 export const createCustomer = (req, res) => {
    //username kayıtlıysa response 400 döner
    connection.query(
-    "SELECT * FROM employees WHERE customer_username=" + req.body.customer_username,
+    "SELECT * FROM customers WHERE customer_username='" + req.body.customer_username +"'",
     function (err, result, fields) {
       if (err) throw err; // TODO: handle error
       if(result.length != 0)
@@ -25,7 +26,7 @@ export const createCustomer = (req, res) => {
       "','" +
       req.body.customer_username +
       "','" +
-      req.body.customer_password +
+      crypto.createHash('md5').update(req.body.customer_password).digest("hex") +
       "','" +
       req.body.customer_email +
       "')",

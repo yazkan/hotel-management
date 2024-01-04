@@ -1,4 +1,5 @@
 import connection from "../dbConnect.js";
+import crypto from "crypto";
 
 export const getAllEmployees = (req, res) => {
   connection.query("SELECT * FROM employees", function (err, result, fields) {
@@ -25,7 +26,7 @@ export const createEmployee = (req, res) => {
       "','" +
       req.body.employee_username +
       "','" +
-      req.body.employee_password +
+      crypto.createHash('md5').update(req.body.employee_password).digest("hex") +
       "','" +
       req.body.employee_email +
       "','" +
