@@ -1,7 +1,7 @@
 import connection from "../dbConnect.js";
 
 export const getAllServices = (req, res) => {
-  connection.query("SELECT * FROM services", function (err, result, fields) {
+  connection.query("SELECT * FROM purchased_services", function (err, result, fields) {
     if (err) throw err; // TODO: handle error
     res.status(200).json(result);
   });
@@ -9,7 +9,7 @@ export const getAllServices = (req, res) => {
 
 export const createService = (req, res) => {
   connection.query(
-    "INSERT INTO services (reservation_id,service_id) VALUES ('" +
+    "INSERT INTO purchased_services (reservation_id,service_id) VALUES ('" +
       req.body.reservation_id +
       "','" +
       req.body.service_id +
@@ -28,7 +28,7 @@ export const createService = (req, res) => {
 export const getService = (req, res) => {
   if (!isNaN(req.params.purchased_service_id)) {
     connection.query(
-      "SELECT * FROM services WHERE purchased_service_id=" + req.params.purchased_service_id,
+      "SELECT * FROM purchased_services WHERE purchased_service_id=" + req.params.purchased_service_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -44,7 +44,7 @@ export const getService = (req, res) => {
 export const deleteService = (req, res) => {
   if (!isNaN(req.params.purchased_service_id)) {
     connection.query(
-      "Delete FROM services WHERE purchased_service_id=" + req.params.purchased_service_id,
+      "Delete FROM purchased_services WHERE purchased_service_id=" + req.params.purchased_service_id,
       function (err, result, fields) {
         if (err) throw err; // TODO: handle error
         res.status(200).json(result);
@@ -60,7 +60,7 @@ export const deleteService = (req, res) => {
 export const updateService = (req, res) => {
   if (!isNaN(req.params.service_id)) {
     connection.query(
-      "UPDATE services SET reservation_id='" +
+      "UPDATE purchased_services SET reservation_id='" +
         req.body.reservation_id +
         "', service_id='" +
         req.body.service_id +

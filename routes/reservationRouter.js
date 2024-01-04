@@ -5,11 +5,12 @@ import {
   createReservation,
   deleteReservation,
   updateReservation,
+  getReservationWithCustomerId,
 } from "../controllers/reservationController.js";
 
 const app = Router();
 
-app.get("/reservation", (req, res) => {
+app.get("/reservationAll", (req, res) => {
   console.log("Log: Get request /reservation");
   getAllReservations(req, res);
 });
@@ -40,6 +41,13 @@ app.put("/reservation/:reservation_id", (req, res) => {
       req.params.reservation_id
   );
   updateReservation(req, res);
+});
+
+app.get("/reservation", (req, res) => {
+  console.log(
+    "Log: Get request /reservation/:reservation_id=" + req.query.customer_id
+  );
+  getReservationWithCustomerId(req, res);
 });
 
 export default app;
