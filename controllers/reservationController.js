@@ -148,7 +148,7 @@ export const updateReservation = (req, res) => {
 //customer_id ile reservationları getiren endpoint
 export const getReservationWithCustomerId = (req, res) => {
   if (!isNaN(req.query.customer_id)) {
-    connection.query("SELECT r.*, IFNULL(s.service_id, NULL) AS service_id, IFNULL(s.service_price, NULL) AS service_price, IFNULL(s.service_title, NULL) AS service_title FROM reservations AS r LEFT JOIN purchased_services AS ps ON r.reservation_id = ps.reservation_id LEFT JOIN services AS s ON ps.service_id = s.service_id WHERE r.customer_id = " + req.query.customer_id,
+    connection.query("SELECT r.*, IFNULL(s.service_id, NULL) AS service_id, IFNULL(s.service_price, NULL) AS service_price, IFNULL(s.service_title, NULL) AS service_title FROM reservations AS r LEFT JOIN purchased_services AS ps ON r.reservation_id = ps.reservation_id LEFT JOIN services AS s ON ps.service_id = s.service_id LEFT JOIN bills AS b ON r.reservation_id = b.reservation_id WHERE r.customer_id = " + req.query.customer_id,
       function (err, result, fields) {
         if (err) {
           // TODO: handle error properly
@@ -174,6 +174,7 @@ export const getReservationWithCustomerId = (req, res) => {
               room_no: reservation.room_no,
               reservation_start_date: reservation.reservation_start_date,
               reservation_end_date: reservation.reservation_end_date,
+              amount: reservation.bill_amount,
               purchased_services: [{
                 id: reservation.service_id,
                 price: reservation.service_price,

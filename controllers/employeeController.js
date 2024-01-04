@@ -10,7 +10,7 @@ export const getAllEmployees = (req, res) => {
 export const createEmployee = (req, res) => {
   //username kayıtlıysa response 400 döner
   connection.query(
-    "SELECT * FROM employees WHERE employee_username=" + req.body.employee_username,
+    "SELECT * FROM employees WHERE employee_username='" + req.body.employee_username+"'",
     function (err, result, fields) {
       if (err) throw err; // TODO: handle error
       if(result.length != 0)
